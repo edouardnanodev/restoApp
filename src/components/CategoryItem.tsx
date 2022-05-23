@@ -12,7 +12,7 @@ type catProps = {
 
 export const CategoryItem = ({name,imgUrl,index,active,handlePress}: catProps) => {
 
-    console.log(name)
+
   return (
     <TouchableOpacity onPress={handlePress}>
         <View style={[style.container, style.elevation, active?{backgroundColor:"rgb(241,186,87)"}:{backgroundColor:"white"}, index===0 ? {marginLeft:29} : {marginRight:15} ]}>
