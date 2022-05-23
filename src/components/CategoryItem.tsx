@@ -1,23 +1,28 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image} from 'react-native'
+import {View, Text, StyleSheet, Image,TouchableOpacity} from 'react-native'
 import { elevation } from '../common/style'
 
 type catProps = {
+    index:number,
     name:string,
-    url:string
+    imgUrl:string | any,
+    active: boolean,
+    handlePress: ()=>any
 }
 
-export const CategoryItem:catProps = ({name,imgUrl}: catProps) => {
+export const CategoryItem = ({name,imgUrl,index,active,handlePress}: catProps) => {
 
     console.log(name)
   return (
-    <View style={[style.container, style.elevation]}>
+    <TouchableOpacity onPress={handlePress}>
+        <View style={[style.container, style.elevation, active?{backgroundColor:"rgb(241,186,87)"}:{backgroundColor:"white"}, index===0 ? {marginLeft:29} : {marginRight:15} ]}>
         <View style={style.imageContainer}>
             <Image source={imgUrl} style={style.image}/>
         </View>
         <Text>{name}</Text>
         
     </View>
+    </TouchableOpacity>
   )
 }
 
@@ -27,8 +32,7 @@ const style = StyleSheet.create({
         height:100,
         borderRadius:20,
         marginVertical:15,
-        marginHorizontal:15,
-        backgroundColor: "rgb(241,186,87)",
+        marginHorizontal:12,
         alignItems:"center",
         justifyContent:"center"
 

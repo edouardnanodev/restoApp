@@ -1,11 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, FlatList, View } from 'react-native';
 import { Header } from './src/components/Header';
 import { Search } from './src/components/Search';
 import { CategoryItem } from './src/components/CategoryItem';
+import { Restaurants } from './src/components/Restaurants';
 
 export default function App() {
+   const [term, setTerm] = useState('Burger')
   const categories = [
     {
       name:"Burger",
@@ -24,7 +26,7 @@ export default function App() {
       url: require(`./src/assets/images/cake.png`)
     },
     {
-      name:"Smoothie",
+      name:"Drink",
       url: require(`./src/assets/images/smoothies.png`)
     },
     {
@@ -35,16 +37,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
-      <Search/>
+      <Search setTerm={setTerm}/>
       {/* <CategoryItem name='Burger' imgUrl={require(`./src/assets/images/burger.png`)} /> */}
 
-      <FlatList data={categories} renderItem={({item})=>{
-        return <CategoryItem name={item.name} imgUrl={item.url}/>
+      <View>
+      <FlatList data={categories} renderItem={({item,index})=>{
+        return <CategoryItem name={item.name} imgUrl={item.url} index={index} active={item.name==term} handlePress={()=>{
+          setTerm(item.name)
+        }}/>
       }} 
       horizontal
       showsHorizontalScrollIndicator={false}
       keyExtractor={(cat)=> cat.name}
       />
+      </View>
+      <View  style={{marginHorizontal:25, marginTop:15}}>
+      <Restaurants/>
+
+      </View>
 
       <StatusBar style="auto" />
     </View>

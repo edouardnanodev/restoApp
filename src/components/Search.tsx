@@ -1,14 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { TextInput, View, StyleSheet } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons"
 import {elevation} from "../common/style" 
 
-export const Search = () => {
+type props = {
+  setTerm: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const Search = ({setTerm}:props) => {
+const [input,setInput]=useState('')
+const handleEditing= ()=>{
+  if (!input) return
+  setTerm(input)
+  setInput("")
+}
+
   return (
     <View style={[style.container, style.elevation]}>
         <FontAwesome name='search' size={25}/>
-        <TextInput style={style.input} placeholder='Restaurants, food'/>
+        <TextInput style={style.input} placeholder='Restaurants, food' value={input} onEndEditing={handleEditing} onChangeText={(text)=>{
+          setInput(text)
+        }}/>
     </View>
+
   )
 }
 const style = StyleSheet.create({
