@@ -12,7 +12,6 @@ export const RestaurantItem = (restaurant: any) => {
             <View style={style.infoContainer}>
                 <Text style={style.header}>{restaurant.restaurant.name}</Text>
                 <View style={style.info}>
-        
                     <Text >{restaurant.restaurant.rating}<FontAwesome name='star' size={13}/></Text>
                     {/* <Text >{restaurant.restaurant.rating}</Text> */}
                     <Text style={style.money}>{restaurant.restaurant.price?(restaurant.restaurant.price.lenght>1?"200$":"100$"):'50$'}</Text>
@@ -50,14 +49,14 @@ header:{
     marginBottom:5
 },
 info:{
-    // flexDirection:'row'
+    flexDirection:'row',
+    justifyContent:'space-between'
 },
 rating:{
 
 },
 money:{
-    // marginLeft:140,
-    textAlign:"right",
+
     color:"white",
     fontWeight:"bold"
 }
