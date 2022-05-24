@@ -52,7 +52,7 @@ export default function App() {
       />
       </View>
       <View  style={{marginHorizontal:25, marginTop:15}}>
-      <Restaurants/>
+      <Restaurants term={term}/>
 
       </View>
 
