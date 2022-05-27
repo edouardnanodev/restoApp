@@ -19,9 +19,13 @@ const style = StyleSheet.create({
   },
   lightHeader:{
     fontSize:35,
+    color:"white"
+    
   },
   boldHeader:{
     fontSize:40,
-    fontWeight:"bold"
+    fontWeight:"bold",
+    color:"white"
+
   }
 })

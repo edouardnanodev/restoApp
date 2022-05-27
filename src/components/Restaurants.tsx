@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { withNavigation } from 'react-navigation'
 import useRestaurants from '../hooks/useRestaurants'
-import {RestaurantItem} from './RestaurantItem'
+import  RestaurantItem  from './RestaurantItem'
 type props = { term: string }
 
-export const Restaurants = (term: props) => {
+ function Restaurants ({ term, navigation }: any) {
     const [{ data, loading, error }, searchRestaurant] = useRestaurants()
 
     useEffect(() => {
@@ -22,11 +24,13 @@ export const Restaurants = (term: props) => {
     return (
         <View>
             <Text style={style.header}>Top Restaurants</Text>
-            <View>
-
-                <FlatList showsVerticalScrollIndicator={false} data={data} keyExtractor={(restaurant) => restaurant.id} 
-                renderItem={({item}) => (<RestaurantItem restaurant={item}/>)} />
-
+            <View >
+                <FlatList showsVerticalScrollIndicator={false} data={data} keyExtractor={(restaurant) => restaurant.id}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => navigation.navigate("Resto",{ resto:item})}>
+                            <RestaurantItem restaurant={item} />
+                        </TouchableOpacity>
+                    )} />
             </View>
         </View>
     )
@@ -38,9 +42,12 @@ const style = StyleSheet.create({
 
     },
     header: {
+        marginHorizontal: 25,
         fontWeight: 'bold',
         fontSize: 20,
-        paddingBottom: 10
+        paddingBottom: 10,
+      color:"white"
+        
     },
     error: {
         textAlign: "center",
@@ -49,3 +56,7 @@ const style = StyleSheet.create({
         paddingTop: 25
     }
 })
+
+// export default withNavigation(Restaurants)
+
+export default withNavigation(Restaurants)
