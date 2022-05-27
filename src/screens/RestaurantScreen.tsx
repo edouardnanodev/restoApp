@@ -18,7 +18,7 @@ const RestaurantScreen = ({ navigation }:any) => {
     if (error) return <View><Text style={style.error}>{error}</Text></View>
 
     return (
-        <View>
+        <View style={{marginTop:70}}>
 
             {/* <Header></Header> */}
             <Text style={style.header}>{data?.name}</Text>
@@ -38,7 +38,7 @@ const style = StyleSheet.create({
         textAlign:'center'
     },
     image: {
-        width: '90%',
+        width: '94%',
         height: 300,
         borderRadius: 20,
         margin: 10
