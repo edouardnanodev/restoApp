@@ -4,11 +4,11 @@ import { FlatList } from 'react-native-gesture-handler';
 import useRestaurant from '../hooks/useRestaurant';
 
 
-const RestaurantScreen = ({ navigation }:any) => {
+export const RestaurantScreen = ({ navigation }:any) => {
     console.log(navigation.state.params.resto);
     const id = navigation.state.params.resto.id
     const [{ data, loading, error }, getRestaurant] = useRestaurant()
- 
+  
     useEffect(() => {
         getRestaurant(id)
     }, [navigation])
@@ -18,7 +18,31 @@ const RestaurantScreen = ({ navigation }:any) => {
     if (error) return <View><Text style={style.error}>{error}</Text></View>
 
     return (
+
         <View style={{marginTop:70}}>
+            <View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    presentationStyle='formSheet'
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                        setModalVisible(!modalVisible);
+                    }}>
+                    <View style={style.centeredView}>
+                        <View style={style.modalView}>
+                            <Text style={style.modalText}>Hello World!</Text>
+                            <Pressable
+                                style={[style.button, style.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={style.textStyle}>Hide Modal</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </Modal>
+
+            </View>
 
             {/* <Header></Header> */}
             <Text style={style.header}>{data?.name}</Text>
@@ -51,4 +75,3 @@ const style = StyleSheet.create({
     }
 }) 
 
-export default RestaurantScreen

@@ -6,7 +6,7 @@ import { CategoryItem } from '../components/CategoryItem'
 import Restaurants from '../components/Restaurants'
 import { Search } from '../components/Search'
 
-export default function HomeScreen() {
+export const HomeScreen = () => {
     const [term, setTerm] = useState('Burger')
     const categories = [
         {

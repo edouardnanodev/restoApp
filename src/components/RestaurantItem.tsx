@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, View, Text, StyleSheet } from "react-native"
 import { elevation } from '../common/style'
 import { FontAwesome } from "@expo/vector-icons"
-import { withNavigation } from 'react-navigation'
+
 
   function RestaurantItem(restaurant: any) {
     // console.log(restaurant.restaurant.name)
@@ -62,4 +62,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default withNavigation(RestaurantItem)
+export default RestaurantItem
